@@ -1,0 +1,145 @@
+.bg {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background-color: #777777;
+}
+
+.content {
+  position: absolute;
+  top: 50px;
+  width: 135px;
+  height: 41px;
+  left: 192px;
+  color: white;
+  font-size: 32px;
+  font-family: "Roboto", sans-serif;
+}
+
+.firstLine {
+  position: absolute;
+  margin-left: 192px;
+  top: 171px;
+}
+
+.input {
+  float: left;
+  width: 1319px;
+  height: 75px;
+  border-radius: 8px;
+  font-size: 22px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 17px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.circle {
+  top: 6px;
+  margin-left: 25px;
+  float: left;
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+.secondLine {
+  position: absolute;
+  top: 261px;
+  margin-left: 192px;
+}
+/* задать параметры для .secondLine: следующая стока */
+.button {
+  border-radius: 8px;
+  line-height: 39px;
+  font-size: 32px;
+  width: 244px;
+  height: 75px;
+  background-color: #d9d9d9;
+  margin-right: 10px;
+  padding-right: 20px;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* active, focus, hover */
+.button:active {
+  opacity: 0.6;
+}
+
+.thirdLine {
+  position: absolute;
+  display: inline-flex;
+  flex-direction: column;
+  top: 351px;
+  margin-left: 192px;
+  background-color: white;
+  width: 1272px;
+  border-radius: 8px;
+  padding: 32px;
+  gap: 15px;
+}
+
+/* 
+  Мы можем вместо отступов справа и слева ставить display: flex,
+  justfy-content: space-between (растянуть контент по всей
+  ширине, расставить отступы между блоками равнозначные)
+
+  и добавить отдельный padding.
+  Позволяет создавать очень гибкие интерфейсы.
+*/
+.task {
+  padding: 0 26px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 75px;
+  background-color: #777777;
+  border-radius: 8px;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.bar {
+  margin-right: 41px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+}
+
+.leftinfo {
+  display: flex;
+}
+
+.trash {
+  background-color: unset;
+  outline: none;
+  border: none;
+}
+.trash:hover {
+  opacity: 0.6;
+}
+
+.trash:active {
+  border: 1px solid rgb(38, 56, 10);
+}
+
+.decThrough {
+  text-decoration: line-through;
+}
