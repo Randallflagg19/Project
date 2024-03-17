@@ -78,14 +78,16 @@ function setNewTask(status = false) {
   const newCheckBox = newTask.querySelector(".bar");
   const newTodoText = newTask.querySelector(".todo-text");
 
-  newCheckBox.checked = status
-  if (newCheckBox.checked) {newTodoText.classList.add("todo-text_through")} 
+  newCheckBox.checked = status;
+  if (newCheckBox.checked) {
+    newTodoText.classList.add("todo-text_through");
+  }
 
   newCheckBox.addEventListener("change", (e) => {
-    
-    if (status = true){e.target.checked}
-    
-    
+    if (status) {
+      e.target.checked;
+    }
+
     if (e.target.checked) {
       newTodoText.classList.add("todo-text_through");
     } else {
@@ -94,14 +96,11 @@ function setNewTask(status = false) {
   });
 }
 
-
-
 moviesList.forEach((movie) => {
-let createNewMovie = createTask(movie.title);
-globalTasks.append(createNewMovie);
-setNewTask(movie.status);
+  let createNewMovie = createTask(movie.title);
+  globalTasks.append(createNewMovie);
+  setNewTask(movie.status);
 });
-
 
 const createNewTask1 = createTask("Сделать дз 1");
 globalTasks.append(createNewTask1);
@@ -122,8 +121,6 @@ circleButton.addEventListener("click", (e) => {
   inp.value = "";
   setNewTask();
 });
-
-
 
 //(+)адекватная реакция на новые таски чтобы зачеркивались
 
