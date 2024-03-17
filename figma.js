@@ -1,55 +1,62 @@
-const moviesList = [
-  {
-    id: "1",
-    title: "Dune",
-    status: true,
-  },
-  {
-    id: "2",
-    title: "The Shawshank Redemption",
-    status: false,
-  },
-  {
-    id: "3",
-    title: "The Matrix",
-    status: false,
-  },
-  {
-    id: "4",
-    title: "The Godfather",
-    status: true,
-  },
-  {
-    id: "5",
-    title: "The Dark Knight",
-    status: true,
-  },
-  {
-    id: "6",
-    title: "Schindler's List",
-    status: false,
-  },
-  {
-    id: "7",
-    title: "The Lord of the Rings: The Return of the King",
-    status: true,
-  },
-  {
-    id: "8",
-    title: "The Shawshank Redemption",
-    status: true,
-  },
-  {
-    id: "9",
-    title: "Pulp Fiction",
-    status: false,
-  },
-  {
-    id: "10",
-    title: "Forrest Gump",
-    status: true,
-  },
-];
+// const moviesList3 = [
+//   {
+//     id: "1",
+//     title: "Dune",
+//     status: true,
+//   },
+//   {
+//     id: "2",
+//     title: "The Shawshank Redemption",
+//     status: false,
+//   },
+//   {
+//     id: "3",
+//     title: "The Matrix",
+//     status: false,
+//   },
+//   {
+//     id: "4",
+//     title: "The Godfather",
+//     status: true,
+//   },
+//   {
+//     id: "5",
+//     title: "The Dark Knight",
+//     status: true,
+//   },
+//   {
+//     id: "6",
+//     title: "Schindler's List",
+//     status: false,
+//   },
+//   {
+//     id: "7",
+//     title: "The Lord of the Rings: The Return of the King",
+//     status: true,
+//   },
+//   {
+//     id: "8",
+//     title: "The Shawshank Redemption",
+//     status: true,
+//   },
+//   {
+//     id: "9",
+//     title: "Pulp Fiction",
+//     status: false,
+//   },
+//   {
+//     id: "10",
+//     title: "Forrest Gump",
+//     status: true,
+//   },
+// ];
+
+// localStorage.setItem("tasks", JSON.stringify(moviesList3));
+//
+
+const moviesList = JSON.parse(localStorage.getItem("tasks")) || [];
+
+// const moviesList = moviesList1.filter((item) => (item.id = "3"));
 
 const globalTasks = document.querySelector(".thirdLine");
 const inp = document.querySelector(".input");
@@ -70,18 +77,30 @@ function createTask(task) {
     </div>
   </div>`;
 
+  //  create func taskAddEventListeners(..args)
   return newElement;
+}
+
+function removeTask(e) {
+  const taskEl = e.target.closest(".task");
+
+  if (taskEl) {
+    taskEl.remove();
+  }
 }
 
 function setNewTask(status = false) {
   const newTask = globalTasks.lastChild;
   const newCheckBox = newTask.querySelector(".bar");
   const newTodoText = newTask.querySelector(".todo-text");
+  const newTrashBtn = newTask.querySelector(".trash");
 
   newCheckBox.checked = status;
   if (newCheckBox.checked) {
     newTodoText.classList.add("todo-text_through");
   }
+
+  newTrashBtn.addEventListener("click", (e) => removeTask(e));
 
   newCheckBox.addEventListener("change", (e) => {
     if (status) {
@@ -102,25 +121,57 @@ moviesList.forEach((movie) => {
   setNewTask(movie.status);
 });
 
-const createNewTask1 = createTask("Сделать дз 1");
-globalTasks.append(createNewTask1);
-setNewTask();
-
-const createNewTask2 = createTask("Сделать дз 2");
-globalTasks.append(createNewTask2);
-setNewTask();
-
-const createNewTask3 = createTask("Сделать дз 3");
-globalTasks.append(createNewTask3);
-setNewTask();
-
 circleButton.addEventListener("click", (e) => {
   const inputValue = inp.value;
   const createNewTask = createTask(inputValue);
   globalTasks.append(createNewTask);
+
+  // moviesListz
+
+  moviesList.push({ id: "11", title: inp.value, status: false });
+
+  localStorage.setItem("tasks", JSON.stringify(moviesList));
+  console.log(moviesList);
+
   inp.value = "";
   setNewTask();
 });
+
+function addDataToLocalStorage(data, lcKey) {}
+
+function removeDataFromLocalStorage(id, lcKey) {}
+
+function changeDataInLocalStorage(id, data, lcKey) {}
+
+// мусорки кнопки функции, LocalStorage
+
+//********************************* LocalStorage  */
+
+inp.addEventListener("input", (e) => {
+  if (!e.target.value.trim()) {
+    return;
+  }
+  console.log(e.target.value);
+  localStorage.setItem("inputValue", e.target.value);
+});
+
+inp.value = localStorage.getItem("inputValue");
+
+localStorage.setItem("tasks", JSON.stringify(moviesList1));
+
+console.log(typeof localStorage.getItem("tasks"));
+
+// const createNewTask1 = createTask("Сделать дз 1");
+// globalTasks.append(createNewTask1);
+// setNewTask();
+
+// const createNewTask2 = createTask("Сделать дз 2");
+// globalTasks.append(createNewTask2);
+// setNewTask();
+
+// const createNewTask3 = createTask("Сделать дз 3");
+// globalTasks.append(createNewTask3);
+// setNewTask();
 
 //(+)адекватная реакция на новые таски чтобы зачеркивались
 
