@@ -3,9 +3,9 @@
   width: 1920px;
   height: 1980px;
   background-color: #777777;
-  }
-  
-  .content {
+}
+
+.content {
   position: absolute;
   top: 50px;
   width: 135px;
@@ -14,15 +14,15 @@
   color: white;
   font-size: 32px;
   font-family: "Roboto", sans-serif;
-  }
-  
-  .firstLine {
+}
+
+.firstLine {
   position: absolute;
   margin-left: 192px;
   top: 171px;
-  }
-  
-  .input {
+}
+
+.input {
   float: left;
   width: 1319px;
   height: 75px;
@@ -32,13 +32,13 @@
   display: flex;
   align-items: center;
   padding-left: 17px;
-  }
-  
-  .input:focus {
+}
+
+.input:focus {
   outline: none;
-  }
-  
-  .circle {
+}
+
+.circle {
   top: 6px;
   margin-left: 25px;
   float: left;
@@ -50,14 +50,14 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-  }
-  
-  .secondLine {
+}
+
+.secondLine {
   position: absolute;
   top: 261px;
   margin-left: 192px;
-  }
-  .button {
+}
+.button {
   border-radius: 8px;
   line-height: 39px;
   font-size: 32px;
@@ -70,14 +70,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  }
-  
-  /* active, focus, hover */
-  .button:active {
+}
+
+/* active, focus, hover */
+.button:active {
   opacity: 0.6;
-  }
-  
-  .thirdLine {
+}
+
+.thirdLine {
   position: absolute;
   display: inline-flex;
   flex-direction: column;
@@ -87,11 +87,10 @@
   width: 1272px;
   border-radius: 8px;
   padding: 32px;
-  gap: 15px;
-  }
-  
- 
-  .task {
+  padding-bottom: 17px;
+}
+
+.task {
   padding: 0 26px;
   box-sizing: border-box;
   width: 100%;
@@ -102,47 +101,47 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  }
-  
-  .display-flex {
+  margin-bottom: 15px;
+}
+
+.display-flex {
   display: flex;
-  }
-  
-  .bar {
+}
+
+.bar {
   margin-right: 41px;
   display: flex;
   width: 40px;
   height: 40px;
-  }
-  
-  .leftinfo {
+}
+
+.leftinfo {
   align-items: center;
   display: flex;
-  }
-  
-  .trash {
+}
+
+.trash {
   background-color: unset;
   outline: none;
   border: none;
-  }
-  .trash:hover {
+}
+.trash:hover {
   opacity: 0.6;
-  }
-  
-  .trash:active {
+}
+
+.trash:active {
   border: 1px solid rgb(38, 56, 10);
-  }
-  
-  .decThrough {
+}
+
+.decThrough {
   text-decoration: line-through;
-  }
+}
 
-  .todo-text_through {
-    text-decoration: line-through;
-  }
+.todo-text_through {
+  text-decoration: line-through;
+}
 
-
-   /*
+/*
   Мы можем вместо отступов справа и слева ставить display: flex,
   justfy-content: space-between (растянуть контент по всей
   ширине, расставить отступы между блоками равнозначные)
