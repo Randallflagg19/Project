@@ -129,6 +129,9 @@ moviesList.forEach((movie) => {
 
 
 
+//ewe
+
+
 // circleButton.addEventListener("click", (e) => {
 //   const inputValue = inp.value;
 //   if (inputValue == ''){
