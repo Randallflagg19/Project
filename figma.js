@@ -114,33 +114,51 @@ function createTask(task, id, status) {
     const newCheckBox = newElement.querySelector(".bar");
     const newTodoText = newElement.querySelector(".todo-text");
     const newTrashBtn = newElement.querySelector(".trash");
-    let newId = id
+    let newId = id;
     newCheckBox.checked = status;
 
     if (newCheckBox.checked) {
       newTodoText.classList.add("todo-text_through");
     }
 
+    //CHANGE
+
     newCheckBox.addEventListener("change", (e) => {
       if (status) {
-        e.target.checked
+        e.target.checked;
       }
 
       if (e.target.checked) {
         newTodoText.classList.add("todo-text_through");
+        moviesList.forEach((i) => {
+          if (i.id == newId) {
+            i.status = !i.status;
+          }
+        });
+
+        console.log(moviesList);
       } else {
-        newTodoText.classList.remove("todo-text_through")
+        newTodoText.classList.remove("todo-text_through");
+        moviesList.forEach((i) => {
+          if (i.id == newId) {
+            i.status = !i.status;
+          }
+        });
+
+        console.log(moviesList);
       }
     });
+
+    //DELETE
 
     newTrashBtn.addEventListener("click", (e) => removeTask(e));
 
     function removeTask(e) {
       const taskEl = e.target.closest(".task");
 
-      if (taskEl) {        
-        moviesList = moviesList.filter((item) => item.id !== newId)        
-        taskEl.remove();        
+      if (taskEl) {
+        moviesList = moviesList.filter((item) => item.id !== newId);
+        taskEl.remove();
         localStorage.setItem("tasks", JSON.stringify(moviesList));
       }
     }
@@ -162,18 +180,18 @@ circleButton.addEventListener("click", (e) => {
   } else {
     const createNewTask = createTask(inputValue, globalTasks.children.length);
     globalTasks.append(createNewTask);
-  }  
+  }
 
   moviesList.push({
-     id: `${globalTasks.children.length.toString()}`,
-     title: inp.value, status: false 
-    })
+    id: `${globalTasks.children.length.toString()}`,
+    title: inp.value,
+    status: false,
+  });
 
-  localStorage.setItem("tasks", JSON.stringify(moviesList))
+  localStorage.setItem("tasks", JSON.stringify(moviesList));
 
   inp.value = "";
 });
-
 
 // CRUD
 
@@ -205,6 +223,3 @@ circleButton.addEventListener("click", (e) => {
 // localStorage.setItem("tasks", JSON.stringify(moviesList1));
 
 //console.log(typeof localStorage.getItem("tasks"));
-
-
-
