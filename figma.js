@@ -1,58 +1,73 @@
-// const rawMoviesList = [
-//   {
-//     id: "1",
-//     title: "Dune",
-//     status: true,
-//   },
-//   {
-//     id: "2",
-//     title: "The Shawshank Redemption",
-//     status: false,
-//   },
-//   {
-//     id: "3",
-//     title: "The Matrix",
-//     status: false,
-//   },
-//   {
-//     id: "4",
-//     title: "The Godfather",
-//     status: true,
-//   },
-//   {
-//     id: "5",
-//     title: "The Dark Knight",
-//     status: true,
-//   },
-//   // {
-//   //   id: "6",
-//   //   title: "Schindler's List",
-//   //   status: false,
-//   // },
-//   // {
-//   //   id: "7",
-//   //   title: "The Lord of the Rings: The Return of the King",
-//   //   status: true,
-//   // },
-//   // {
-//   //   id: "8",
-//   //   title: "The Shawshank Redemption",
-//   //   status: true,
-//   // },
-//   // {
-//   //   id: "9",
-//   //   title: "Pulp Fiction",
-//   //   status: false,
-//   // },
-//   // {
-//   //   id: "10",
-//   //   title: "Forrest Gump",
-//   //   status: true,
-//   // },
-// ];
+const rawMoviesList = [
+  {
+    id: "1",
+    title: "Dune",
+    status: true,
+  },
+  {
+    id: "2",
+    title: "The Shawshank Redemption",
+    status: false,
+  },
+  {
+    id: "3",
+    title: "The Matrix",
+    status: false,
+  },
+  {
+    id: "4",
+    title: "The Godfather",
+    status: true,
+  },
+  {
+    id: "5",
+    title: "The Dark Knight",
+    status: true,
+  },
+  {
+    id: "6",
+    title: "Schindler's List",
+    status: false,
+  },
+  {
+    id: "7",
+    title: "The Lord of the Rings: The Return of the King",
+    status: true,
+  },
+  {
+    id: "8",
+    title: "The Shawshank Redemption",
+    status: true,
+  },
+  {
+    id: "9",
+    title: "Pulp Fiction",
+    status: false,
+  },
+  {
+    id: "10",
+    title: "Forrest Gump",
+    status: true,
+  },
+];
 
-// localStorage.setItem("tasks", JSON.stringify(rawMoviesList));
+localStorage.setItem("tasks", JSON.stringify(rawMoviesList));
 
+async function getData() {
+  const data = fetch("http://localhost:3000/api/movies")
+    .then((res) => res.json())
+    .then((res) => res);
+
+  return data;
+}
+
+const returnedData = getData().then((res) => {
+  console.log(res);
+});
+
+console.log(returnedData);
+// В moviesList прокидываем данные из fetch
+// результат getdata массив с сервера (из файла) 
 let moviesList = JSON.parse(localStorage.getItem("tasks")) || [];
 
 const globalTasks = document.querySelector(".thirdLine");
@@ -133,6 +148,10 @@ function createTask(task, id, status) {
         moviesList.forEach((i) => {
           if (i.id == newId) {
             i.status = !i.status;
+            changeDataArrInLocalStorage("tasks", i.id, {
+              ...i,
+              status: i.status,
+            });
           }
         });
 
@@ -142,6 +161,10 @@ function createTask(task, id, status) {
         moviesList.forEach((i) => {
           if (i.id == newId) {
             i.status = !i.status;
+            changeDataArrInLocalStorage("tasks", i.id, {
+              ...i,
+              status: i.status,
+            });
           }
         });
 
@@ -193,22 +216,78 @@ circleButton.addEventListener("click", (e) => {
   inp.value = "";
 });
 
-// CRUD
+exMovie = [
+  {
+    id: "2",
+    title: "The Shawshank Redemption",
+    status: false,
+  },
+  {
+    id: "3",
+    title: "The Shawshank Redemption",
+    status: false,
+  },
+];
 
-// CREATE
-// READ
-// UPDATE
-// DELETE
-//
-// CREATE function addDataToLocalStorage(data, lcKey) {}
+function addDataToLocalStorage(lcKey, data) {
+  localStorage.setItem(lcKey, data);
+}
 
-// DELETE function removeDataFromLocalStorage(id, lcKey) {}
+addDataToLocalStorage("someKey", JSON.stringify(exMovie));
+
+// function removeDataFromLocalStorage(lcKey, id) {
+//   let dataFromls = JSON.parse(localStorage.getItem(`${lcKey}`))
+//   let newData = dataFromls.filter(item => item.id !== id)
+//   localStorage.setItem(`${lcKey}`, JSON.stringify(newData))
+// }
+
+// removeDataFromLocalStorage('someKey', '2')
+
+function changeDataArrInLocalStorage(lcKey, id, data) {
+  let dataFromls = JSON.parse(localStorage.getItem(`${lcKey}`));
+  ////////////////////////////////////////////////////////////
+  const newData = dataFromls.map((item) => {
+    if (item.id === id) {
+      const newElement = { ...item, ...data };
+      return newElement;
+    }
+
+    return item;
+  });
+  localStorage.setItem(`${lcKey}`, JSON.stringify(newData));
+}
+
+const arrObj = [
+  { key: "value1", key2: "value2" },
+  { key: "value1", key2: "value2" },
+  { key: "opachki", key2: "value2" },
+  { key: "value1", key2: "value2" },
+];
+
+function editArrValue(key, arr, newData) {
+  const newArrObj = arrObj.map((item) => {
+    if (arr.key == key) {
+      return { ...item, ...newData };
+    }
+    return item;
+  });
+
+  return newArrObj;
+}
+
+const arrTest = [1, 2, 3, 4, 5];
+
+const newArrTest = arrTest.map((item, i) => i ** 2);
+console.log("arr", arrTest);
+console.log("newArr", newArrTest);
+
+changeDataArrInLocalStorage(
+  "someKey",
+  "3",
+  "Rita Hayworth and The Shawshank Redemption"
+);
 
 // UPDATE function changeDataInLocalStorage(id, data, lcKey) {}
-
-// LocalStorage
-
-// //********************************* LocalStorage  */
 
 // inp.addEventListener("input", (e) => {
 //   if (!e.target.value.trim()) {
@@ -218,8 +297,13 @@ circleButton.addEventListener("click", (e) => {
 //   localStorage.setItem("inputValue", e.target.value);
 // });
 
-// inp.value = localStorage.getItem("inputValue");
+function serverLive() {
+  console.log("Log info");
+  return serverLive();
+}
 
-// localStorage.setItem("tasks", JSON.stringify(moviesList1));
+// const test123 = someFunc();
 
-//console.log(typeof localStorage.getItem("tasks"));
+// const aksjdkasd = test123("asdkasd");
+
+// aksjdkasd();
